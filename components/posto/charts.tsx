@@ -517,8 +517,7 @@ export function InteractiveChart({
                     if (h <= 0) return
                     const yTop = PAD.top + CH - h
 
-                    let colorTop: string, colorBot: string
-                    ;[colorTop, colorBot] = amberPalette[i % amberPalette.length]
+                    const [colorTop, colorBot] = amberPalette[i % amberPalette.length]
 
                     const barGrad = ctx.createLinearGradient(0, yTop, 0, PAD.top + CH)
                     barGrad.addColorStop(0, colorTop)

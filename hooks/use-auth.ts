@@ -31,7 +31,7 @@ type ApiErr    = { ok: false; error: string }
 type LoginResponse         = ApiOk<{ user: AuthUser }>      | ApiErr
 type RegisterResponse      = ApiOk<{ user: AuthUser }>      | ApiErr
 type MeResponse            = ApiOk<{ user: AuthUser }>      | ApiErr
-type LogoutResponse        = ApiOk<{}>                      | ApiErr
+type LogoutResponse        = ApiOk<Record<string, never>>    | ApiErr
 type SendCodeResponse      = ApiOk<{ sent: true; expiresInSec: number }> | ApiErr
 type VerifyCodeResponse    = ApiOk<{ verified: true }>      | ApiErr
 type ForgotPasswordResponse= ApiOk<{ sent: true; expiresInSec: number }> | ApiErr
@@ -83,7 +83,7 @@ export function useAuth() {
 
   // ── /api/auth/me ────────────────────────────────────────────────────────────
   /**
-   * Valida sessão via cookie HTTP-only (livemes_session).
+   * Valida a sessão a partir do cookie da demonstração.
    * 401 é NORMAL quando não está logado — não seta error.
    * Chamado automaticamente ao montar o hook.
    */
@@ -91,9 +91,8 @@ export function useAuth() {
     setLoading(true)
     setError(null)
 
-    // Timeout explícito: em tablet/mobile com cookie presente, o /me bate no banco
-    // para validar a sessão. Se o banco estiver lento ou a rede instável, o fetch
-    // pode ficar pendente para sempre mantendo loading=true eternamente.
+    // Timeout explícito preservado do sistema original: garante que a tela nunca
+    // fique presa em "carregando" caso a validação de sessão não responda.
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), 10_000)
 
@@ -103,7 +102,7 @@ export function useAuth() {
     try {
       const res = await fetch(`${AUTH_BASE}/me`, {
         method:      "GET",
-        credentials: "include",        // ← envia cookie livemes_session
+        credentials: "include",        // ← envia o cookie de sessão
         headers:     { Accept: "application/json" },
         cache:       "no-store",
         signal:      controller.signal,
@@ -143,7 +142,7 @@ export function useAuth() {
   // ── /api/auth/login ─────────────────────────────────────────────────────────
   /**
    * POST /api/auth/login  { email, senha, rememberMe }
-   * Backend seta o cookie livemes_session na resposta.
+   * A sessão da demonstração é criada no cliente após a resposta.
    */
   const login = React.useCallback(
     async (emailInput: string, senha: string, rememberMe = false) => {
@@ -158,9 +157,8 @@ export function useAuth() {
         return { ok: false as const, error: EMAIL_INVALIDO }
       }
 
-      // Timeout explícito no login: o /login bate em 2 queries SQL (getUsuarioPorEmail
-      // + createSessionRow). Sem abort, se o banco travar, loading=true fica preso
-      // indefinidamente no tablet — mesmo comportamento que causava spinner eterno no /me.
+      // Timeout explícito no login, herdado do sistema original: evita que a tela
+      // fique presa em "entrando..." se a requisição não retornar.
       const loginController = new AbortController()
       const loginTimeoutId = setTimeout(() => loginController.abort(), 15_000)
 
@@ -218,7 +216,7 @@ export function useAuth() {
   // ── /api/auth/logout ────────────────────────────────────────────────────────
   /**
    * POST /api/auth/logout
-   * Backend revoga sessão no banco e limpa o cookie.
+   * Encerra a sessão da demonstração e limpa o cookie.
    */
   const logout = React.useCallback(async () => {
     setLoading(true)

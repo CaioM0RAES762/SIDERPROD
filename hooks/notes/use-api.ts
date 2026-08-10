@@ -1,9 +1,9 @@
 "use client"
 // hooks/notes/use-api.ts
 //
-// ✅ Autenticação via cookie HTTP-only (livemes_session).
-//    empresa_id e usuario_id são extraídos pelo BACKEND a partir da sessão.
-//    O frontend NÃO precisa enviar empresa_id nem usuario_id no body ou na URL.
+// ✅ Autenticação via cookie de sessão.
+//    empresa_id e usuario_id são resolvidos pela camada de dados a partir da
+//    sessão — o frontend não os envia no body nem na URL.
 //
 // ✅ Compatível com dois formatos de resposta:
 //    1) Wrapper: { success: true, data: ... }  (e { success:false, error:"..." })

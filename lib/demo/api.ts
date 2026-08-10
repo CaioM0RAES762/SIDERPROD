@@ -25,13 +25,7 @@ import {
 } from "./catalog"
 import { DEMO_EMAIL, DEMO_PASSWORD } from "./config"
 import { demoUserPayload, isDemoCredential } from "./auth"
-import {
-  aggregate,
-  bucketsNaJanela,
-  corridaEm,
-  getDayPlan,
-  pecasRetrabalho,
-} from "./factory"
+import { aggregate, bucketsNaJanela, getDayPlan, pecasRetrabalho } from "./factory"
 import {
   analiticoLookups,
   analiticoPareto,
@@ -39,7 +33,6 @@ import {
   centrosFiltrados,
   historicoLista,
   historicoSeries,
-  paradasFiltradas,
   rebarbadoresRanking,
   relatorioAnotacoes,
   relatorioConsolidado,
@@ -66,12 +59,10 @@ import {
   DAY_MS,
   dayIndexFromISO,
   demoNow,
-  HOUR_MS,
   iso,
   operationalDayIndex,
   operationalDayStart,
   shiftAt,
-  shiftsOfDay,
 } from "./time"
 import {
   buildCard,
@@ -1345,7 +1336,6 @@ export async function handleDemoRequest(req: DemoHttpRequest): Promise<DemoHttpR
 
   // ── Administração de usuários ────────────────────────────────────────────
   if (path === "admin/users") {
-    const store = getStore()
     if (method === "GET") {
       return ok({
         ok: true,
@@ -1360,7 +1350,6 @@ export async function handleDemoRequest(req: DemoHttpRequest): Promise<DemoHttpR
         })),
       })
     }
-    void store
     return ok({
       ok: false,
       error: "A administração de usuários é somente leitura no ambiente de demonstração.",
@@ -1630,8 +1619,3 @@ export async function handleDemoRequest(req: DemoHttpRequest): Promise<DemoHttpR
   return { status: 404, body: { error: "Endpoint não disponível no ambiente de demonstração." } }
 }
 
-// Mantém referências usadas apenas em ramos específicos do roteador.
-void corridaEm
-void shiftsOfDay
-void HOUR_MS
-void paradasFiltradas

@@ -9,7 +9,6 @@ import {
   CENTROS,
   CENTROS_BY_ID,
   EMPRESA_ID,
-  MOTIVOS,
   MOTIVOS_BY_ID,
   PRODUTOS,
   PRODUTOS_BY_ID,
@@ -33,7 +32,6 @@ import {
   iso,
   operationalDayIndex,
   operationalDayStart,
-  overlapSeconds,
   shiftsOfDay,
 } from "./time"
 import { paradasView } from "./views"
@@ -397,7 +395,6 @@ export function analiticoLookups(f?: ReportFilters, nowMs = demoNow()) {
       }
     }
   }
-  void f
 
   return {
     empresaId: EMPRESA_ID,
@@ -1105,5 +1102,3 @@ export function relatorioConsolidado(f: ReportFilters, nowMs = demoNow()) {
   }
 }
 
-void MOTIVOS
-void overlapSeconds

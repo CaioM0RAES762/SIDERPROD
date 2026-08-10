@@ -127,7 +127,7 @@ export function useAdminUsers() {
           `/api/admin/users?id=${encodeURIComponent(usuarioId)}`,
           { method: "DELETE", credentials: "include" },
         );
-        const data = (await readJson(res)) as ApiOk<{}> | ApiErr | null;
+        const data = (await readJson(res)) as ApiOk<Record<string, never>> | ApiErr | null;
 
         if (!res.ok || !data || !(data as any).ok) {
           const msg = (data as any)?.error ?? `HTTP ${res.status}`;

@@ -17,12 +17,11 @@ import {
   MOTIVOS,
   PRODUTOS,
   USUARIOS,
-  USUARIO_DEMO,
   type DemoMotivo,
 } from "./catalog"
 import { makeRng, stableId } from "./rng"
 import { DEMO_SEED } from "./config"
-import { demoNow, HOUR_MS, operationalDayIndex, operationalDayStart } from "./time"
+import { demoNow, HOUR_MS, operationalDayIndex } from "./time"
 
 export type StatusOverride =
   | { tipo: "STOPPED"; motivo_id: string; inicio: number }
@@ -305,9 +304,6 @@ function buildInitialStore(): DemoStore {
     }
     filas.set(ct.centro_trabalho_id, itens)
   })
-
-  void operationalDayStart
-  void USUARIO_DEMO
 
   return {
     statusOverride: new Map(),
