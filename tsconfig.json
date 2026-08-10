@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+
+    /* -------------------- JS / TS BEHAVIOR -------------------- */
+    "allowJs": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "incremental": true,
+
+    /* -------------------- MODULE SYSTEM -------------------- */
+    "module": "esnext",
+
+    // 🔥 ALTERAÇÃO IMPORTANTE (resolve mssql e outras libs CJS)
+    "moduleResolution": "node",
+
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+
+    /* -------------------- JSX -------------------- */
+    "jsx": "react-jsx",
+
+    /* -------------------- PATH ALIASES -------------------- */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+
+    /* -------------------- NEXT -------------------- */
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+
+  "exclude": [
+    "node_modules"
+  ]
+}
