@@ -45,6 +45,9 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|woff2)$).*)",
+    // Além dos assets, as rotas de metadados do Next (ícone, imagem OpenGraph,
+    // robots, sitemap) ficam de fora: elas precisam responder a quem ainda não
+    // entrou — inclusive aos robôs que geram o preview do link.
+    "/((?!_next/static|_next/image|favicon.ico|icon|apple-icon|opengraph-image|twitter-image|robots.txt|sitemap.xml|manifest.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|woff2)$).*)",
   ],
 }

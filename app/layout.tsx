@@ -36,7 +36,14 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
+// Base usada para transformar os caminhos de metadados (ícone, imagem
+// OpenGraph) em URLs absolutas — exigência dos leitores de preview de link.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim()
+  || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : null)
+  || "https://siderprod.vercel.app"
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "SIDERPROD — Monitoramento da Produção Industrial",
     template: "%s · SIDERPROD",
@@ -48,6 +55,7 @@ export const metadata: Metadata = {
   keywords: ["MES", "OEE", "indústria 4.0", "monitoramento de produção", "dashboard industrial", "Next.js"],
   openGraph: {
     type: "website",
+    url: siteUrl,
     siteName: "SIDERPROD",
     title: "SIDERPROD — Monitoramento da Produção Industrial",
     description:
