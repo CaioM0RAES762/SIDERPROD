@@ -5,6 +5,8 @@ import { useEffect, useState } from "react"
 import { Menu, ChevronDown } from "lucide-react"
 import { usePathname } from "next/navigation"
 
+import { DemoNotice } from "./demo-notice"
+
 interface HeaderProps {
   onMenuClick: () => void
   title?: string
@@ -228,6 +230,7 @@ export function Header({ onMenuClick }: HeaderProps) {
 
         {/* ── Direita ───────────────────────────────────── */}
         <div className="flex items-center gap-1.5 shrink-0">
+          <DemoNotice />
           {/* Data + relógio de segmentos */}
           <div
             className="hidden sm:flex items-center gap-3 px-3"
