@@ -244,7 +244,7 @@ function CreateModal({ onClose, onCreate }: CreateModalProps) {
                             type="email"
                             value={email}
                             onChange={e => setEmail(e.target.value)}
-                            placeholder="qualquer@email.com"
+                            placeholder="fulano@exemplo.com"
                             className="w-full bg-slate-800/60 border border-slate-700/60 rounded-xl px-3.5 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500/60 transition-all"
                         />
                         <p className="text-xs text-slate-500 mt-1">Qualquer e-mail válido</p>
