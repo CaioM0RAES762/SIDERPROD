@@ -5,6 +5,13 @@ demonstrativa para acompanhamento de chão de fábrica: OEE em tempo real,
 apontamento de paradas, análise de perdas, histórico, planos de melhoria e
 logística de ordens.
 
+[![Demo online](https://img.shields.io/badge/demo-siderprod.vercel.app-E8630A?style=for-the-badge)](https://siderprod.vercel.app)
+[![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=nextdotjs)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Licença MIT](https://img.shields.io/badge/licença-MIT-6B7280?style=for-the-badge)](LICENSE)
+
+[![SIDERPROD](https://siderprod.vercel.app/opengraph-image)](https://siderprod.vercel.app)
+
 > ⚠️ **Ambiente de demonstração.** Todos os dados exibidos são **fictícios** e
 > gerados pela própria aplicação. Não há banco de dados, ERP, coleta de sensores
 > ou qualquer infraestrutura industrial por trás desta versão.
